@@ -1,0 +1,27 @@
+﻿@model EviAppWithMasterDetails.Models.Spot
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Spot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpotName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpotName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpotId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EviAppWithMasterDetails.Models.Client>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="display-4">Client Information</h2>
+
+<div class="d-flex justify-content-end mb-2">
+    <a href="@Url.Action("Create","Clients")" id="btnCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New Client</a>
+</div>
+
+<div>
+    @foreach (var client in Model)
+    {
+        <div class="card mb-2">
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    <img src="@client.Picture" width="32" style="border-radius:8px;" />
+                    <label class="me-2"><b>Client : </b>@Html.DisplayFor(x => client.ClientName)</label>
+                    <label class="me-2"><b>Age : </b>@Html.DisplayFor(x => client.Age)</label>
+                    <label class="me-2"><b>Date Of Birth : </b>@Html.DisplayFor(x => client.BirthDate)</label>
+                </div>
+                <div>
+                    <a href="@Url.Action("Edit", "Clients", new {id=client.ClientId})" id="btnEdit" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> </a>
+                    <a href="@Url.Action("Delete", "Clients", new {id=client.ClientId})" id="btnDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Spot Id</th>
+                            <th>Spot Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in client.BookingEntries)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(x => item.Spot.SpotId)</td>
+                                <td>@Html.DisplayFor(x => item.Spot.SpotName)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
